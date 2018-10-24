@@ -101,7 +101,7 @@
     {
       "name": "[variables('dcNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
-      "location": "[parameters('location')]",
+      "location": "[variables('location')]",
       "apiVersion": "2016-03-30",
       "dependsOn": [],
       "tags": {
@@ -125,7 +125,7 @@
     {
       "name": "[parameters('dcName')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "location": "[parameters('location')]",
+      "location": "[variables('location')]",
       "zones": [
         "[parameters('zone')]"
       ],
