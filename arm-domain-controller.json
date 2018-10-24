@@ -13,6 +13,15 @@
         "Premium_LRS"
       ]
     },
+    "zone": {
+      "type": "string",
+      "defaultValue": "1",
+      "allowedValues": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
     "dcName": {
       "type": "string",
       "minLength": 1
@@ -85,13 +94,14 @@
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', properties('virtualNetworkSubnet'))]",
     "dcStorageAccountContainerName": "vhds",
-    "dcNicName": "[concat(parameters('dcName'), 'NetworkInterface')]"
+    "dcNicName": "[concat(parameters('dcName'), 'NetworkInterface')]",
+    "location": "westeurope"
   },
   "resources": [
     {
       "name": "[variables('dcNicName')]",
       "type": "Microsoft.Network/networkInterfaces",
-      "location": "westeurope",
+      "location": "[parameters('location')]",
       "apiVersion": "2016-03-30",
       "dependsOn": [],
       "tags": {
@@ -115,7 +125,10 @@
     {
       "name": "[parameters('dcName')]",
       "type": "Microsoft.Compute/virtualMachines",
-      "location": "westeurope",
+      "location": "[parameters('location')]",
+      "zones": [
+        "[parameters('zone')]"
+      ],
       "apiVersion": "2018-06-01",
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('dcNicName'))]"
