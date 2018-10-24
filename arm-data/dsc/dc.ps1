@@ -65,7 +65,7 @@ Configuration ConfigureServer
 	Import-DscResource -ModuleName 'xActiveDirectory'
     Import-DscResource -ModuleName 'xPendingReboot'
 
-    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$($DomainName)\$($Admincreds.UserName)", $Admincreds.Password)
+    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$($DomainName)\$($AdminCredentials.UserName)", $AdminCredentials.Password)
 
 	Node localhost
     {
@@ -85,7 +85,7 @@ Configuration ConfigureServer
             RetryCount = $RetryCount
             RetryIntervalSec = $RetryIntervalSec
         }
-<#
+
 		xADDomainController BDC
         {
             DomainName = $DomainName
@@ -99,8 +99,6 @@ Configuration ConfigureServer
             Name = "RebootAfterDCPromotion"
             DependsOn = "[xADDomainController]BDC"
         }
-#>
-
 	}
 }
 
