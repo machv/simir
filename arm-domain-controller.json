@@ -58,19 +58,11 @@
     },
     "virtualNetworkName": {
       "type": "string",
-      "defaultValue": "adVNET",
-      "alllowedValues": [
-        "adVNET",
-        "r1-poc-prd-vnet-01"
-      ]
+      "defaultValue": "adVNET"
     },
     "virtualNetworkResourceGroup": {
       "type": "string",
-      "defaultValue": "SIMIR",
-      "allowedValues": [
-        "r1-poc-network-arg-01",
-        "SIMIR"
-      ]
+      "defaultValue": "SIMIR"
     },
     "_artifactsLocation": {
       "type": "string",
