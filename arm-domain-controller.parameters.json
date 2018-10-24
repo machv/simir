@@ -3,10 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
       "dcName": {
-          "value": "dc02"
+          "value": "dc06"
       },
       "dcAdminPassword": {
          "value": "LS1setup!LS1setup!"
+      },
+      "dcPrivateIp": {
+          "value": "10.0.0.26"
       }
    }
 }

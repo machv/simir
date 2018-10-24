@@ -43,9 +43,10 @@
     },
     "dcWindowsOSVersion": {
       "type": "string",
-      "defaultValue": "2016-Datacenter",
+      "defaultValue": "2012-R2-Datacenter",
       "allowedValues": [
-        "2016-Datacenter"
+        "2016-Datacenter",
+        "2012-R2-Datacenter"
       ]
     },
     "storageAccountName": {
