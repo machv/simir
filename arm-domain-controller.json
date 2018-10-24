@@ -20,7 +20,7 @@
     "dcPrivateIp": {
       "type": "string",
       "minLength": 1,
-      "defaultValue": "10.0.0.4"
+      "defaultValue": "10.0.0.10"
     },
     "domainName": {
       "type": "string",
@@ -36,7 +36,7 @@
       "metadata": {
         "description": "The name of the Administrator with rights to join the domain"
       },
-      "defaultValue": "Administrator"
+      "defaultValue": "LabAdmin"
     },
     "dcAdminPassword": {
       "type": "securestring"
@@ -45,28 +45,32 @@
       "type": "string",
       "defaultValue": "2016-Datacenter",
       "allowedValues": [
-        "20616-Datacenter",
-        "2008-R2-SP1",
-        "2012-Datacenter",
-        "2012-R2-Datacenter",
-        "Windows-Server-Technical-Preview"
+        "2016-Datacenter"
       ]
     },
     "storageAccountName": {
       "type": "string",
-      "defaultValue": "alab11045"
+      "defaultValue": "storagesimir"
     },
     "storageAccountResourceGroup": {
       "type": "string",
-      "defaultValue": "r1-poc-network-arg-01"
+      "defaultValue": "SIMIR"
     },
     "virtualNetworkName": {
       "type": "string",
-      "defaultValue": "r1-poc-prd-vnet-01"
+      "defaultValue": "adVNET",
+      "alllowedValues": [
+        "adVNET",
+        "r1-poc-prd-vnet-01"
+      ]
     },
     "virtualNetworkResourceGroup": {
       "type": "string",
-      "defaultValue": "r1-poc-network-arg-01"
+      "defaultValue": "SIMIR",
+      "allowedValues": [
+        "r1-poc-network-arg-01",
+        "SIMIR"
+      ]
     },
     "_artifactsLocation": {
       "type": "string",
