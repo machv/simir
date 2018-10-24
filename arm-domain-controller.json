@@ -49,14 +49,6 @@
         "2012-R2-Datacenter"
       ]
     },
-    "storageAccountName": {
-      "type": "string",
-      "defaultValue": "storagesimir"
-    },
-    "storageAccountResourceGroup": {
-      "type": "string",
-      "defaultValue": "SIMIR"
-    },
     "virtualNetworkName": {
       "type": "string",
       "defaultValue": "adVNET"
@@ -81,7 +73,6 @@
     }
   },
   "variables": {
-    "storage01Name": "[concat('storage01', uniqueString(resourceGroup().id))]",
     "dcImagePublisher": "MicrosoftWindowsServer",
     "dcImageOffer": "WindowsServer",
     "dcOSDiskName": "[concat(parameters('dcName'), 'dcOSDisk')]",
