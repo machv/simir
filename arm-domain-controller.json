@@ -86,7 +86,7 @@
     "dcOSDiskName": "dcOSDisk",
     "dcVmSize": "Standard_D2_v2",
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
-    "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', 'DtlLab1Subnet')]",
+    "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', 'adSubnet')]",
     "dcStorageAccountContainerName": "vhds",
     "dcNicName": "[concat(parameters('dcName'), 'NetworkInterface')]"
   },
