@@ -30,6 +30,17 @@
       },
       "defaultValue": "group15.litware.com"
     },
+    "pcAdminUserName": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "The name of the Administrator with rights to join the domain"
+      },
+      "defaultValue": "LabAdmin"
+    },
+    "pcAdminPassword": {
+      "type": "securestring"
+    },
     "dcAdminUserName": {
       "type": "string",
       "minLength": 1,
@@ -126,8 +137,8 @@
         },
         "osProfile": {
           "computerName": "[parameters('dcName')]",
-          "adminUsername": "[parameters('dcAdminUsername')]",
-          "adminPassword": "[parameters('dcAdminPassword')]"
+          "adminUsername": "[parameters('pcAdminUsername')]",
+          "adminPassword": "[parameters('pcAdminPassword')]"
         },
         "storageProfile": {
           "imageReference": {
