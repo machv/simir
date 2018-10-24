@@ -202,9 +202,8 @@
           "sasToken": "[parameters('_artifactsLocationSasToken')]",
           "configurationFunction": "dc.ps1\\ConfigureServer",
           "Properties": {
-            "DCName": "[parameters('dcName')]",
             "DomainName": "[parameters('domainName')]",
-            "AdminCreds": {
+            "AdminCredentials": {
               "UserName": "[parameters('dcAdminUserName')]",
               "Password": "PrivateSettingsRef:AdminPassword"
             }

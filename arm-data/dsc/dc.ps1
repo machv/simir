@@ -46,42 +46,32 @@ Configuration JoinDomain
 	}
 }
 #>
-Configuration PromoteDomainController
-{
-    Import-DscResource -ModuleName xActiveDirectory
-
-	xADDomainController SecondaryDC
-	{
-		DomainName = $DomainDnsName
-		DomainAdministratorCredential = $DomainAdministratorCredentials
-		SafemodeAdministratorPassword = $SafeModeCredentials
-#		DatabasePath = 'C:\NTDS'
-#		LogPath = 'C:\NTDS'
-		DependsOn = @("[WindowsFeature]AD-Domain-Services")
-	}
-}
 
 Configuration ConfigureServer
 {
-   param
+    param
     (
         [Parameter(Mandatory)]
         [String]$DomainName,
 
         [Parameter(Mandatory)]
-        [System.Management.Automation.PSCredential]$Admincreds,
+        [System.Management.Automation.PSCredential]$AdminCredentials,
 
-        [Int]$RetryCount=20,
-        [Int]$RetryIntervalSec=30
+        [Int]$RetryCount = 20,
+        [Int]$RetryIntervalSec = 30
     )
 	 
 	Import-DscResource -ModuleName xActiveDirectory
     Import-DscResource -ModuleName xPendingReboot
 
-    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
+    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$($DomainName)\$($Admincreds.UserName)", $Admincreds.Password)
 
 	Node localhost
     {
+        FeaturePrereqs Prereq
+        {
+        }
+
         LocalConfigurationManager
         {
             RebootNodeIfNeeded = $true
@@ -103,7 +93,8 @@ Configuration ConfigureServer
             DependsOn = "[xWaitForADDomain]DscForestWait"
         }
 
-        xPendingReboot RebootAfterPromotion {
+        xPendingReboot RebootAfterPromotion 
+        {
             Name = "RebootAfterDCPromotion"
             DependsOn = "[xADDomainController]BDC"
         }
