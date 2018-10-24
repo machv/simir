@@ -174,7 +174,8 @@
         "settings": {
           "Name": "[parameters('domainName')]",
           "User": "[concat(parameters('dcAdminUserName'), '@', parameters('domainName'))]",
-          "Restart": "true"
+          "Restart": "true",
+          "Options": "3"
         },
         "protectedSettings": {
           "Password": "[parameters('dcAdminPassword')]"
