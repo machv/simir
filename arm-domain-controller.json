@@ -88,13 +88,13 @@
   "variables": {
     "dcImagePublisher": "MicrosoftWindowsServer",
     "dcImageOffer": "WindowsServer",
-    "dcOSDiskName": "[concat(parameters('dcName'), 'dcOSDisk')]",
+    "dcOSDiskName": "[concat(parameters('dcName'), '-disk-os')]",
     "dcVmSize": "Standard_DS2_v2",
     "storageAccountType": "Premium_LRS",
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', parameters('virtualNetworkSubnet'))]",
     "dcStorageAccountContainerName": "vhds",
-    "dcNicName": "[concat(parameters('dcName'), 'NetworkInterface')]",
+    "dcNicName": "[concat(parameters('dcName'), '-network-interface-01')]",
     "location": "westeurope"
   },
   "resources": [
