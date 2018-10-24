@@ -123,9 +123,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Network/networkInterfaces', variables('dcNicName'))]"
       ],
-      "tags": {
-        "displayName": "dc"
-      },
       "properties": {
         "hardwareProfile": {
           "vmSize": "[variables('dcVmSize')]"
@@ -221,7 +218,6 @@
       }
     }
   ],
-
   "outputs": {
   }
 }

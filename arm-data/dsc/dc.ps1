@@ -34,7 +34,7 @@
 		DependsOn = "[WindowsFeature]AD-Domain-Services"
 	}
 }
-
+<#
 Configuration JoinDomain
 {
 	xComputer JoinDomain
@@ -45,17 +45,19 @@ Configuration JoinDomain
 		DependsOn = "[xWaitForADDomain]WaitForPrimaryDC"
 	}
 }
-
+#>
 Configuration PromoteDomainController
 {
+    Import-DscResource -ModuleName xActiveDirectory
+
 	xADDomainController SecondaryDC
 	{
 		DomainName = $DomainDnsName
 		DomainAdministratorCredential = $DomainAdministratorCredentials
 		SafemodeAdministratorPassword = $SafeModeCredentials
-		DatabasePath = 'C:\NTDS'
-		LogPath = 'C:\NTDS'
-		DependsOn = @("[WindowsFeature]AD-Domain-Services","[xComputer]JoinDomain")
+#		DatabasePath = 'C:\NTDS'
+#		LogPath = 'C:\NTDS'
+		DependsOn = @("[WindowsFeature]AD-Domain-Services")
 	}
 }
 
@@ -72,10 +74,11 @@ Configuration ConfigureServer
         [Int]$RetryCount=20,
         [Int]$RetryIntervalSec=30
     )
-	
-	Import-DscResource -ModuleName xActiveDirectory, xPendingReboot
+	 
+	Import-DscResource -ModuleName xActiveDirectory
+    Import-DscResource -ModuleName xPendingReboot
 
-    [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
+    [System.Management.Automation.PSCredential]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${DomainName}\$($Admincreds.UserName)", $Admincreds.Password)
 
 	Node localhost
     {
@@ -109,7 +112,7 @@ Configuration ConfigureServer
 }
 
 
-
+<#
 Configuration JoinWorkGroupAndAddUser
 {
     import-dscResource -moduleName PsDesiredStateConfiguration
@@ -230,3 +233,4 @@ Configuration ADDS {
         }    
 	}
 }
+#>
