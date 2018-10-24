@@ -208,14 +208,13 @@
               "UserName": "[parameters('dcAdminUserName')]",
               "Password": "PrivateSettingsRef:AdminPassword"
             }
-          },
-          "protectedSettings": {
-            "Items": {
-              "AdminPassword": "[parameters('dcAdminPassword')]"
-            }
           }
         },
-        "protectedSettings": {}
+        "protectedSettings": {
+          "Items": {
+            "AdminPassword": "[parameters('dcAdminPassword')]"
+          }
+        }
       }
     }
   ],
