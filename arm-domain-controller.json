@@ -73,7 +73,7 @@
       "metadata": {
         "description": "Location of resources that the script is dependent on such as linked templates and DSC modules"
       },
-      "defaultValue": "https://raw.githubusercontent.com/machv/simir/master/ARM"
+      "defaultValue": "https://raw.githubusercontent.com/machv/simir/master/arm-data/"
     },
     "_artifactsLocationSasToken": {
       "type": "securestring",
@@ -204,9 +204,9 @@
         "typeHandlerVersion": "2.76",
         "autoUpgradeMinorVersion": true,
         "settings": {
-          "modulesUrl": "[concat(parameters('_artifactsLocation'),'/dsc/config.zip')]",
+          "modulesUrl": "[concat(parameters('_artifactsLocation'),'/dsc/dc.zip')]",
           "sasToken": "[parameters('_artifactsLocationSasToken')]",
-          "configurationFunction": "config.ps1\\Config",
+          "configurationFunction": "dc.ps1\\ConfigureServer",
           "Properties": {
             "DCName": "[parameters('dcName')]",
             "DomainName": "[parameters('domainName')]",
