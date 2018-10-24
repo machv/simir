@@ -85,7 +85,8 @@
     "dcImagePublisher": "MicrosoftWindowsServer",
     "dcImageOffer": "WindowsServer",
     "dcOSDiskName": "[concat(parameters('dcName'), 'dcOSDisk')]",
-    "dcVmSize": "Standard_D2_v2",
+    "dcVmSize": "Standard_DS2_v2",
+    "storageAccountType": "Premium_LRS",
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', 'adSubnet')]",
     "dcStorageAccountContainerName": "vhds",
@@ -146,7 +147,7 @@
             "caching": "ReadWrite",
             "createOption": "FromImage",
             "managedDisk": {
-              "storageAccountType": "Premium_LRS"
+              "storageAccountType": "[variables('storageAccountType')]"
             }
           }
         },
