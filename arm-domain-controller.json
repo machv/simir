@@ -83,7 +83,7 @@
     "storage01Name": "[concat('storage01', uniqueString(resourceGroup().id))]",
     "dcImagePublisher": "MicrosoftWindowsServer",
     "dcImageOffer": "WindowsServer",
-    "dcOSDiskName": "dcOSDisk",
+    "dcOSDiskName": "[concat(parameters('dcName'), 'dcOSDisk')]",
     "dcVmSize": "Standard_D2_v2",
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', 'adSubnet')]",
