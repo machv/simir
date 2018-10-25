@@ -157,6 +157,7 @@
       }
     },
     {
+      "condition": "[not(equals(parameters('domainName'), ''))]",
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(parameters('serverName'),'/joindomain')]",
