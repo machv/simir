@@ -29,7 +29,7 @@
       },
       "defaultValue": "group15.litware.com"
     },
-    "pcAdminUserName": {
+    "localAdminUserName": {
       "type": "string",
       "minLength": 1,
       "metadata": {
@@ -37,10 +37,10 @@
       },
       "defaultValue": "LabAdmin"
     },
-    "pcAdminPassword": {
+    "localAdminPassword": {
       "type": "securestring"
     },
-    "dcAdminUserName": {
+    "domainAdminUserName": {
       "type": "string",
       "minLength": 1,
       "metadata": {
@@ -48,10 +48,10 @@
       },
       "defaultValue": "LabAdmin"
     },
-    "dcAdminPassword": {
+    "domainAdminPassword": {
       "type": "securestring"
     },
-    "dcWindowsOSVersion": {
+    "serverWindowsOSVersion": {
       "type": "string",
       "defaultValue": "2016-Datacenter",
       "allowedValues": [
@@ -125,14 +125,14 @@
         },
         "osProfile": {
           "computerName": "[parameters('serverName')]",
-          "adminUsername": "[parameters('pcAdminUsername')]",
-          "adminPassword": "[parameters('pcAdminPassword')]"
+          "adminUsername": "[parameters('localAdminUserName')]",
+          "adminPassword": "[parameters('localAdminPassword')]"
         },
         "storageProfile": {
           "imageReference": {
             "publisher": "[variables('dcImagePublisher')]",
             "offer": "[variables('dcImageOffer')]",
-            "sku": "[parameters('dcWindowsOSVersion')]",
+            "sku": "[parameters('serverWindowsOSVersion')]",
             "version": "latest"
           },
           "osDisk": {
@@ -170,12 +170,12 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "Name": "[parameters('domainName')]",
-          "User": "[concat(parameters('dcAdminUserName'), '@', parameters('domainName'))]",
+          "User": "[concat(parameters('domainAdminUserName'), '@', parameters('domainName'))]",
           "Restart": "true",
           "Options": "3"
         },
         "protectedSettings": {
-          "Password": "[parameters('dcAdminPassword')]"
+          "Password": "[parameters('domainAdminPassword')]"
         }
       }
     }
