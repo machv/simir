@@ -51,6 +51,14 @@
     "domainAdminPassword": {
       "type": "securestring"
     },
+    "vmType": {
+      "type": "string",
+      "defaultValue": "Standard_DS2_v2",
+      "allowedValues": [
+        "Standard_DS1_v2",
+        "Standard_DS2_v2"
+      ]
+    },
     "serverWindowsOSVersion": {
       "type": "string",
       "defaultValue": "2016-Datacenter",
@@ -76,7 +84,7 @@
     "dcImagePublisher": "MicrosoftWindowsServer",
     "dcImageOffer": "WindowsServer",
     "dcOSDiskName": "[concat(parameters('serverName'), '-disk-os')]",
-    "dcVmSize": "Standard_DS2_v2",
+    "dcVmSize": "[parameters('vmType')]",
     "storageAccountType": "Premium_LRS",
     "dcVnetID": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "dcSubnetRef": "[concat(variables('dcVnetID'), '/subnets/', parameters('virtualNetworkSubnet'))]",
