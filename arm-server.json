@@ -19,7 +19,7 @@
       "type": "string",
       "defaultValue": "",
       "metadata": {
-        "description": "Leave empty to use Dynamic allocation"
+        "description": "Set static IP or leave empty to assign Dynamic address."
       }
     },
     "domainName": {
