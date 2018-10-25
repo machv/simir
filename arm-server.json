@@ -4,9 +4,8 @@
   "parameters": {
     "zone": {
       "type": "string",
-      "defaultValue": "",
+      "defaultValue": "1",
       "allowedValues": [
-        "",
         "1",
         "2",
         "3"
@@ -114,7 +113,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "location": "[variables('location')]",
       "zones": [
-        "[if(equals(parameters('zone'), ''), json('null'), parameters('zone'))]"
+        "[parameters('zone')]"
       ],
       "apiVersion": "2018-06-01",
       "dependsOn": [
