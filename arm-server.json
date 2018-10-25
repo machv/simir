@@ -4,8 +4,9 @@
   "parameters": {
     "zone": {
       "type": "string",
-      "defaultValue": "1",
+      "defaultValue": "",
       "allowedValues": [
+        "",
         "1",
         "2",
         "3"
@@ -15,10 +16,12 @@
       "type": "string",
       "minLength": 1
     },
-    "dcPrivateIp": {
+    "serverPrivateIp": {
       "type": "string",
-      "minLength": 1,
-      "defaultValue": "10.10.0."
+      "defaultValue": "",
+      "metadata": {
+        "description": "Leave empty to use Dynamic allocation"
+      }
     },
     "domainName": {
       "type": "string",
@@ -90,15 +93,15 @@
       "apiVersion": "2016-03-30",
       "dependsOn": [],
       "tags": {
-        "displayName": "dcNic"
+        "displayName": "serverNic"
       },
       "properties": {
         "ipConfigurations": [
           {
             "name": "ipconfig1",
             "properties": {
-              "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[parameters('dcPrivateIp')]",
+              "privateIPAllocationMethod": "[if(equals(parameters('serverPrivateIp'), ''), 'Dynamic', 'Static')]",
+              "privateIPAddress": "[if(equals(parameters('serverPrivateIp'), ''), json('null'), parameters('serverPrivateIp'))]",
               "subnet": {
                 "id": "[variables('dcSubnetRef')]"
               }
@@ -112,7 +115,7 @@
       "type": "Microsoft.Compute/virtualMachines",
       "location": "[variables('location')]",
       "zones": [
-        "[parameters('zone')]"
+        "[if(equals(parameters('zone'), ''), json('null'), parameters('zone'))]"
       ],
       "apiVersion": "2018-06-01",
       "dependsOn": [
